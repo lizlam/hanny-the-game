@@ -15,6 +15,9 @@
     background-image: url("/images/test.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
+    width: 900px;
+    height: 900px;
+    position: relative;
   }
 
   @media (min-width: 640px) {
