@@ -1,5 +1,30 @@
 <script>
-
+  import Character from "./Character.svelte";
+  let x,
+    y = 0;
+  let key;
+  let keyCode;
+  const handleKeydown = event => {
+    key = event.key;
+    keyCode = event.keyCode;
+    switch (key) {
+      case "ArrowUp":
+        y -= 2;
+        break;
+      case "ArrowDown":
+        y += 2;
+        break;
+      case "ArrowLeft":
+        x += 2;
+        break;
+      case "ArrowRight":
+        x -= 2;
+        break;
+      default:
+    }
+  };
+  $: y = y;
+  $: x = x;
 </script>
 
 <style>
@@ -27,7 +52,10 @@
   }
 </style>
 
+<svelte:window on:keydown|preventDefault={handleKeydown} />
 <main>
   Chapter 1
-  <div class="map" />
+  <div class="map">
+    <Character {x} {y} direction={key} />
+  </div>
 </main>
