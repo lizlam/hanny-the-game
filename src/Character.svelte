@@ -1,22 +1,29 @@
 <script>
   export let direction;
-  export let x = 0;
-  export let y = 0;
 </script>
 
 <style>
+  .character {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+  }
+  .character-sprite {
+    animation: moveSprite 1s steps(4) infinite;
+    image-rendering: pixelated;
+  }
 
+  @keyframes moveSprite {
+    from {
+      transform: translate3d(0px, 0, 0);
+    }
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
 </style>
 
-Which way are you going? {direction}
-<svg
-  tranform="translate({x},{y})"
-  width="600"
-  height="600"
-  xmlns="http://www.w3.org/2000/svg">
-  <!--
-  with relative unit such as percentage, the visual size
-  of the square looks unchanged regardless of the viewBox
-  -->
-  <rect {x} {y} width="32px" height="32px" />
-</svg>
+<div>Which way are you going? {direction}</div>
+<div class="character">
+  <img class="character-sprite" alt="hanny" src="images/hanny.png" />
+</div>

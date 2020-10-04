@@ -1,5 +1,7 @@
 <script>
+  import { onMount } from "svelte";
   import Character from "./Character.svelte";
+  let hanny;
   let x,
     y = 0;
   let key;
@@ -25,6 +27,23 @@
   };
   $: y = y;
   $: x = x;
+
+  onMount(() => {
+    step();
+  });
+
+  const placeCharacter = () => {
+    console.log(key);
+    console.log(hanny);
+    hanny.style.transform = `translate3d(${x * 12}, ${y * 12}px, 0)`;
+  };
+
+  const step = () => {
+    placeCharacter();
+    window.requestAnimationFrame(() => {
+      step();
+    });
+  };
 </script>
 
 <style>
@@ -50,12 +69,18 @@
       max-width: none;
     }
   }
+
+  .map :global(.character) {
+    translate: translate3d(112px, 12px, 0);
+  }
 </style>
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />
 <main>
   Chapter 1
-  <div class="map">
-    <Character {x} {y} direction={key} />
+  <div class="camera">
+    <div class="map">
+      <Character bind:this={hanny} direction={key} />
+    </div>
   </div>
 </main>
