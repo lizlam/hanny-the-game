@@ -2,7 +2,8 @@
   import { onMount } from "svelte";
   import Character from "./Character.svelte";
   let hanny;
-  let x,
+  let map;
+  let x = 0,
     y = 0;
   let key;
   let keyCode;
@@ -33,9 +34,7 @@
   });
 
   const placeCharacter = () => {
-    console.log(key);
-    console.log(hanny);
-    hanny.style.transform = `translate3d(${x * 12}, ${y * 12}px, 0)`;
+    map.style.transform = `translate3d(${2 * x}px, ${-2 * y}px, 0)`;
   };
 
   const step = () => {
@@ -64,6 +63,13 @@
     position: relative;
   }
 
+  div.camera {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    background: cornflowerblue;
+  }
+
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -71,7 +77,7 @@
   }
 
   .map :global(.character) {
-    translate: translate3d(112px, 12px, 0);
+    translate: translate3d(111px, 12px, 0);
   }
 </style>
 
@@ -79,8 +85,8 @@
 <main>
   Chapter 1
   <div class="camera">
-    <div class="map">
-      <Character bind:this={hanny} direction={key} />
+    <div class="map" bind:this={map}>
+      <Character bind:this={hanny} {x} {y} direction={key} />
     </div>
   </div>
 </main>

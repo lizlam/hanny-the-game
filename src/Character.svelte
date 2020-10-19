@@ -1,5 +1,9 @@
 <script>
+  import { onMount, afterUpdate } from "svelte";
   export let direction;
+  export let x;
+  export let y;
+  $: transform = `translate3d(${-4 * x}px, ${4 * y}px, 0)`;
 </script>
 
 <style>
@@ -23,7 +27,6 @@
   }
 </style>
 
-<div>Which way are you going? {direction}</div>
-<div class="character">
+<div class="character" style="transform: {transform}">
   <img class="character-sprite" alt="hanny" src="images/hanny.png" />
 </div>
