@@ -1,6 +1,7 @@
 <script>
   import Game from "./Game.svelte";
   import Stats from "./Stats.svelte";
+  import Surround from "./Surround.svelte";
   export let name;
 </script>
 
@@ -32,8 +33,10 @@
 </style>
 
 <main>
-  <h1>Welcome to Hanny's {name}!</h1>
-  <p>The Adventures of Hanny the Penguin.</p>
+  <Surround>
+    <h1>Welcome to Hanny's {name}!</h1>
+    <p>The Adventures of Hanny the Penguin.</p>
+  </Surround>
   <div class="game-container">
     <Game />
   </div>
