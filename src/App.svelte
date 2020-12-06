@@ -1,5 +1,6 @@
 <script>
   import Game from "./Game.svelte";
+  import Stats from "./Stats.svelte";
   export let name;
 </script>
 
@@ -9,6 +10,11 @@
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
+  }
+
+  .game-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   h1 {
@@ -28,5 +34,7 @@
 <main>
   <h1>Welcome to Hanny's {name}!</h1>
   <p>The Adventures of Hanny the Penguin.</p>
-  <Game />
+  <div class="game-container">
+    <Game />
+  </div>
 </main>

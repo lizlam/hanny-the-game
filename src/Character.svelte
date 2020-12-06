@@ -3,7 +3,7 @@
   export let direction;
   export let x;
   export let y;
-  $: transform = `translate3d(${-4 * x}px, ${4 * y}px, 0)`;
+  $: transform = `translate3d(${-3 * x}px, ${3 * y}px, 0)`;
 </script>
 
 <style>
