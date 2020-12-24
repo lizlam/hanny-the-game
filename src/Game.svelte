@@ -8,20 +8,36 @@
     y = 0;
   let key;
   let keyCode;
-  const handleKeydown = event => {
+  let storyMessage = "Initial text";
+
+  const handleKeydown = (event) => {
     key = event.key;
     keyCode = event.keyCode;
     switch (key) {
       case "ArrowUp":
-        y -= 2;
+        if (y == -2) {
+          break;
+        } else {
+          y -= 2;
+        }
         break;
       case "ArrowDown":
+        if (y == 268) {
+          break;
+        }
         y += 2;
         break;
       case "ArrowLeft":
-        x += 2;
+        if (x == 2) {
+          break;
+        } else {
+          x += 2;
+        }
         break;
       case "ArrowRight":
+        if (x == -272) {
+          break;
+        }
         x -= 2;
         break;
       default:
@@ -31,6 +47,10 @@
   const checkLocation = (x, y) => {
     if (x < -32 && -40 < x && y > 96 && y < 106) {
       console.log("Made it!");
+    }
+    if (x < -60 && -64 < x && y > 30 && y < 40) {
+      console.log("Entered island.");
+      storyMessage = "Entered island.";
     }
   };
 
@@ -46,8 +66,9 @@
   let xOffset = 100;
   let yOffset = 100;
   const placeCharacter = () => {
-    map.style.transform = `translate3d(${2 * x + xOffset}px, ${-2 * y +
-      yOffset}px, 0)`;
+    map.style.transform = `translate3d(${2 * x + xOffset}px, ${
+      -2 * y + yOffset
+    }px, 0)`;
   };
 
   const step = () => {
@@ -70,7 +91,7 @@
 
   div.map {
     image-rendering: pixelated;
-    background-image: url("/images/test.png");
+    background-image: url("/images/test2.jpg");
     background-repeat: no-repeat;
     background-size: 100% auto;
     width: 900px;
@@ -109,8 +130,9 @@
   </Container>
   <div class="stat">
     <Container>
-      <h2 slot="title">Progress</h2>
+      <h2 slot="title">Story</h2>
       <div slot="content">
+        {storyMessage}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
